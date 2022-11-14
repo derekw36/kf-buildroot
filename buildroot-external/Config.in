@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_OTTER_PATH/package/mkbootimg/Config.in.host"

@@ -1,0 +1,8 @@
+config BR2_PACKAGE_HOST_MKBOOTIMG
+	bool "host mkbootimg"
+	help
+	  Utility to create an Android boot image. A notable difference
+	  from abootimg is that mkbootimg does not require a ramdisk,
+	  so it is more suitable for booting mainline Linux.
+
+	  https://github.com/osm0sis/mkbootimg
