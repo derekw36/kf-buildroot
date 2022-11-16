@@ -1,4 +1,4 @@
-From 6418e8fe6b80d906ac5a1d3570dd92ab0e7ec3e8 Mon Sep 17 00:00:00 2001
+From 0816513b728abf6e4b0668c0976ec99d4967fe75 Mon Sep 17 00:00:00 2001
 From: Hansem Ro <hansemro@outlook.com>
 Date: Wed, 12 May 2021 18:26:38 -0700
 Subject: [PATCH] Add clk32kg to twl6030
@@ -91,5 +91,5 @@ index 430265c404d6..8ee55a0e3d2f 100644
  	TWLSMPS_OF_MATCH("ti,twl6032-smps4", SMPS4),
  	TWLSMPS_OF_MATCH("ti,twl6032-vio", VIO),
 -- 
-2.31.1
+2.30.2
 

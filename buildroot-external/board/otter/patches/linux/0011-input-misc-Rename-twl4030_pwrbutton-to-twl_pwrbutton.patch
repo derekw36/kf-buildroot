@@ -1,0 +1,147 @@
+From 6d916a7a17138703e6e136f3945645d87a1ca821 Mon Sep 17 00:00:00 2001
+From: Mithil Bavishi <bavishimithil@gmail.com>
+Date: Sat, 20 Aug 2022 12:46:58 +0530
+Subject: [PATCH] input: misc: Rename twl4030_pwrbutton to twl_pwrbutton
+
+This renames the twl4030-pwrbutton driver to twl-pwrbutton,
+since power button handling is very similar on most TWL chips.
+
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+ arch/arm/configs/omap2plus_defconfig          |  2 +-
+ drivers/input/misc/Kconfig                    |  8 ++---
+ drivers/input/misc/Makefile                   |  2 +-
+ .../{twl4030-pwrbutton.c => twl-pwrbutton.c}  | 32 +++++++++----------
+ 4 files changed, 22 insertions(+), 22 deletions(-)
+ rename drivers/input/misc/{twl4030-pwrbutton.c => twl-pwrbutton.c} (76%)
+
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index d933b787d934..197bdd81be7d 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -402,7 +402,7 @@ CONFIG_TOUCHSCREEN_TSC2007=m
+ CONFIG_INPUT_MISC=y
+ CONFIG_INPUT_CPCAP_PWRBUTTON=m
+ CONFIG_INPUT_TPS65218_PWRBUTTON=m
+-CONFIG_INPUT_TWL4030_PWRBUTTON=m
++CONFIG_INPUT_TWL_PWRBUTTON=m
+ CONFIG_INPUT_UINPUT=m
+ CONFIG_INPUT_PALMAS_PWRBUTTON=m
+ CONFIG_INPUT_PWM_VIBRA=m
+diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
+index dd5227cf8696..6652c1126777 100644
+--- a/drivers/input/misc/Kconfig
++++ b/drivers/input/misc/Kconfig
+@@ -479,15 +479,15 @@ config INPUT_AXP20X_PEK
+ 	  be called axp20x-pek.
+ 
+ 
+-config INPUT_TWL4030_PWRBUTTON
+-	tristate "TWL4030 Power button Driver"
++config INPUT_TWL_PWRBUTTON
++	tristate "TWL Power button Driver"
+ 	depends on TWL4030_CORE
+ 	help
+ 	  Say Y here if you want to enable power key reporting via the
+-	  TWL4030 family of chips.
++	  TWL family of chips.
+ 
+ 	  To compile this driver as a module, choose M here. The module will
+-	  be called twl4030_pwrbutton.
++	  be called twl_pwrbutton.
+ 
+ config INPUT_TWL4030_VIBRA
+ 	tristate "Support for TWL4030 Vibrator"
+diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
+index b92c53a6b5ae..03531e5255e7 100644
+--- a/drivers/input/misc/Makefile
++++ b/drivers/input/misc/Makefile
+@@ -77,7 +77,7 @@ obj-$(CONFIG_INPUT_SOC_BUTTON_ARRAY)	+= soc_button_array.o
+ obj-$(CONFIG_INPUT_SPARCSPKR)		+= sparcspkr.o
+ obj-$(CONFIG_INPUT_STPMIC1_ONKEY)  	+= stpmic1_onkey.o
+ obj-$(CONFIG_INPUT_TPS65218_PWRBUTTON)	+= tps65218-pwrbutton.o
+-obj-$(CONFIG_INPUT_TWL4030_PWRBUTTON)	+= twl4030-pwrbutton.o
++obj-$(CONFIG_INPUT_TWL_PWRBUTTON)	+= twl-pwrbutton.o
+ obj-$(CONFIG_INPUT_TWL4030_VIBRA)	+= twl4030-vibra.o
+ obj-$(CONFIG_INPUT_TWL6040_VIBRA)	+= twl6040-vibra.o
+ obj-$(CONFIG_INPUT_UINPUT)		+= uinput.o
+diff --git a/drivers/input/misc/twl4030-pwrbutton.c b/drivers/input/misc/twl-pwrbutton.c
+similarity index 76%
+rename from drivers/input/misc/twl4030-pwrbutton.c
+rename to drivers/input/misc/twl-pwrbutton.c
+index b307cca17022..5614c5003828 100644
+--- a/drivers/input/misc/twl4030-pwrbutton.c
++++ b/drivers/input/misc/twl-pwrbutton.c
+@@ -1,5 +1,5 @@
+ /**
+- * twl4030-pwrbutton.c - TWL4030 Power Button Input Driver
++ * twl-pwrbutton.c - TWL4030 Power Button Input Driver
+  *
+  * Copyright (C) 2008-2009 Nokia Corporation
+  *
+@@ -52,7 +52,7 @@ static irqreturn_t powerbutton_irq(int irq, void *_pwr)
+ 	return IRQ_HANDLED;
+ }
+ 
+-static int twl4030_pwrbutton_probe(struct platform_device *pdev)
++static int twl_pwrbutton_probe(struct platform_device *pdev)
+ {
+ 	struct input_dev *pwr;
+ 	int irq = platform_get_irq(pdev, 0);
+@@ -65,14 +65,14 @@ static int twl4030_pwrbutton_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	input_set_capability(pwr, EV_KEY, KEY_POWER);
+-	pwr->name = "twl4030_pwrbutton";
+-	pwr->phys = "twl4030_pwrbutton/input0";
++	pwr->name = "twl_pwrbutton";
++	pwr->phys = "twl_pwrbutton/input0";
+ 	pwr->dev.parent = &pdev->dev;
+ 
+ 	err = devm_request_threaded_irq(&pdev->dev, irq, NULL, powerbutton_irq,
+ 			IRQF_TRIGGER_FALLING | IRQF_TRIGGER_RISING |
+ 			IRQF_ONESHOT,
+-			"twl4030_pwrbutton", pwr);
++			"twl_pwrbutton", pwr);
+ 	if (err < 0) {
+ 		dev_err(&pdev->dev, "Can't get IRQ for pwrbutton: %d\n", err);
+ 		return err;
+@@ -90,24 +90,24 @@ static int twl4030_pwrbutton_probe(struct platform_device *pdev)
+ }
+ 
+ #ifdef CONFIG_OF
+-static const struct of_device_id twl4030_pwrbutton_dt_match_table[] = {
+-       { .compatible = "ti,twl4030-pwrbutton" },
+-       {},
++static const struct of_device_id twl_pwrbutton_dt_match_table[] = {
++	{ .compatible = "ti,twl4030-pwrbutton" },
++	{},
+ };
+-MODULE_DEVICE_TABLE(of, twl4030_pwrbutton_dt_match_table);
++MODULE_DEVICE_TABLE(of, twl_pwrbutton_dt_match_table);
+ #endif
+ 
+-static struct platform_driver twl4030_pwrbutton_driver = {
+-	.probe		= twl4030_pwrbutton_probe,
++static struct platform_driver twl_pwrbutton_driver = {
++	.probe		= twl_pwrbutton_probe,
+ 	.driver		= {
+-		.name	= "twl4030_pwrbutton",
+-		.of_match_table = of_match_ptr(twl4030_pwrbutton_dt_match_table),
++		.name	= "twl_pwrbutton",
++		.of_match_table = of_match_ptr(twl_pwrbutton_dt_match_table),
+ 	},
+ };
+-module_platform_driver(twl4030_pwrbutton_driver);
++module_platform_driver(twl_pwrbutton_driver);
+ 
+-MODULE_ALIAS("platform:twl4030_pwrbutton");
+-MODULE_DESCRIPTION("Triton2 Power Button");
++MODULE_ALIAS("platform:twl_pwrbutton");
++MODULE_DESCRIPTION("TWL Power Button");
+ MODULE_LICENSE("GPL");
+ MODULE_AUTHOR("Peter De Schrijver <peter.de-schrijver@nokia.com>");
+ MODULE_AUTHOR("Felipe Balbi <felipe.balbi@nokia.com>");
+-- 
+2.30.2
+

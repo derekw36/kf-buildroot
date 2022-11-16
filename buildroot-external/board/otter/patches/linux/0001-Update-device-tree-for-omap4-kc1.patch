@@ -1,4 +1,4 @@
-From f5687360f21bf1e9868136fdf9279f019daa832a Mon Sep 17 00:00:00 2001
+From 5bb001a8868fe14136f5ca0e25b255a43961680d Mon Sep 17 00:00:00 2001
 From: Hansem Ro <hansemro@outlook.com>
 Date: Sun, 30 May 2021 03:46:32 -0700
 Subject: [PATCH v3] Update device tree for omap4-kc1
@@ -412,5 +412,5 @@ index e59d17b25a1d..74249ccc54dc 100644
 +	regulator-always-on;
 +};
 -- 
-2.31.1
+2.30.2
 

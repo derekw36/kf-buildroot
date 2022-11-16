@@ -1,0 +1,22 @@
+From 79db08f7cbf3d2c222e32eab40663869d25cf795 Mon Sep 17 00:00:00 2001
+From: Mithil Bavishi <bavishimithil@gmail.com>
+Date: Sat, 20 Aug 2022 12:46:52 +0530
+Subject: [PATCH] dt-bindings: power: reset: Move twl4030-power from mfd to
+ power/reset
+
+Move the documentation for twl4030-power from mfd to power/reset
+
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/{mfd => power/reset}/twl4030-power.txt    | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename Documentation/devicetree/bindings/{mfd => power/reset}/twl4030-power.txt (100%)
+
+diff --git a/Documentation/devicetree/bindings/mfd/twl4030-power.txt b/Documentation/devicetree/bindings/power/reset/twl4030-power.txt
+similarity index 100%
+rename from Documentation/devicetree/bindings/mfd/twl4030-power.txt
+rename to Documentation/devicetree/bindings/power/reset/twl4030-power.txt
+-- 
+2.30.2
+

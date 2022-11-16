@@ -1,0 +1,34 @@
+From 691bf8ac349edab31344e207a7486a384dfff49a Mon Sep 17 00:00:00 2001
+From: Mithil Bavishi <bavishimithil@gmail.com>
+Date: Sat, 20 Aug 2022 12:46:59 +0530
+Subject: [PATCH] dt-bindings: input: Rename twl4030-pwrbutton to twl-pwrbutton
+
+This changes the Documentation of the twl4030-pwrbutton to
+make it more generic as it can support other chips than
+twl4030 as well.
+
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+---
+ .../input/{twl4030-pwrbutton.txt => twl-pwrbutton.txt}        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/input/{twl4030-pwrbutton.txt => twl-pwrbutton.txt} (81%)
+
+diff --git a/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt b/Documentation/devicetree/bindings/input/twl-pwrbutton.txt
+similarity index 81%
+rename from Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
+rename to Documentation/devicetree/bindings/input/twl-pwrbutton.txt
+index 9a0b765d3af0..43addc04d569 100644
+--- a/Documentation/devicetree/bindings/input/twl4030-pwrbutton.txt
++++ b/Documentation/devicetree/bindings/input/twl-pwrbutton.txt
+@@ -1,6 +1,6 @@
+-Texas Instruments TWL family (twl4030) pwrbutton module
++Texas Instruments TWL family pwrbutton module
+ 
+-This module is part of the TWL4030. For more details about the whole
++This module is part of a TWL chip. For more details about the whole
+ chip see Documentation/devicetree/bindings/mfd/twl-family.txt.
+ 
+ This module provides a simple power button event via an Interrupt.
+-- 
+2.30.2
+

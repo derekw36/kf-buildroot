@@ -1,9 +1,10 @@
+From 1fd423a7a8a338ff0f0617e3f6760bb95749c435 Mon Sep 17 00:00:00 2001
 From: Michael John Sakellaropoulos <mjsakellaropoulos@gmail.com>
-Date: Thu, 06 May 2021 16:07:20 -0700
+Date: Thu, 6 May 2021 16:07:20 -0700
 Subject: [PATCH] Input: ili210x - Fix ili210x touchdata coordinates endianness
 
-This fixes how coordinates are parsed from ili210x touchdata. Through observation 
-and manual probing of the i2c bus, we have confirmed that the values stored in 
+This fixes how coordinates are parsed from ili210x touchdata. Through observation
+and manual probing of the i2c bus, we have confirmed that the values stored in
 the registers are Little Endian.
 (Tested on Amazon Kindle Fire Gen1 : arch/arm/boot/dts/omap4-kc1.dts)
 
@@ -19,11 +20,11 @@ Fixes: e3559442afd2a ("ili210x - rework the touchscreen sample processing")
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/input/touchscreen/ili210x.c b/drivers/input/touchscreen/ili210x.c
-index d8fccf048bf4..15e68d5a96d8 100644
+index 2bd407d86bae..09c8fd5ce54f 100644
 --- a/drivers/input/touchscreen/ili210x.c
 +++ b/drivers/input/touchscreen/ili210x.c
-@@ -90,8 +90,8 @@ static bool ili210x_touchdata_to_coords(const u8 *touchdata,
- 	if (touchdata[0] & BIT(finger))
+@@ -112,8 +112,8 @@ static bool ili210x_touchdata_to_coords(const u8 *touchdata,
+ 	if (!(touchdata[0] & BIT(finger)))
  		return false;
  
 -	*x = get_unaligned_be16(touchdata + 1 + (finger * 4) + 0);
@@ -34,4 +35,5 @@ index d8fccf048bf4..15e68d5a96d8 100644
  	return true;
  }
 -- 
-2.27.0
+2.30.2
+

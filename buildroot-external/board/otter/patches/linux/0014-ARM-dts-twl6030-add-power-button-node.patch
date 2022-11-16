@@ -1,0 +1,32 @@
+From 454f51d4f3c23b5cba07a6350772ad2a2345aa10 Mon Sep 17 00:00:00 2001
+From: Derek Watson <derekw1996@gmail.com>
+Date: Tue, 25 Oct 2022 23:54:28 -0400
+Subject: [PATCH] ARM: dts: twl6030: add power button node
+
+There is now driver support for the TWL6030 power button, add it to the
+device tree file. Based off support added in [1].
+
+[1] https://github.com/klokik/jem_linux_kernel/commit/226f44376d8b5f9a5a0c3e2616c72f308771d16e
+---
+ arch/arm/boot/dts/twl6030.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm/boot/dts/twl6030.dtsi b/arch/arm/boot/dts/twl6030.dtsi
+index 4eee3133ce4e..b9acb9e0f81b 100644
+--- a/arch/arm/boot/dts/twl6030.dtsi
++++ b/arch/arm/boot/dts/twl6030.dtsi
+@@ -97,6 +97,11 @@ twl_pwmled: pwmled {
+ 		#pwm-cells = <2>;
+ 	};
+ 
++	twl_pwrbutton: pwrbutton {
++		compatible = "ti,twl6030-pwrbutton";
++		interrupts = <0>;
++	};
++
+ 	clk32kg: regulator-clk32kg {
+ 		compatible = "ti,twl6030-clk32kg";
+ 		regulator-always-on;
+-- 
+2.30.2
+
