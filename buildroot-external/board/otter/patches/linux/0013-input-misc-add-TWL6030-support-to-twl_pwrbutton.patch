@@ -1,4 +1,4 @@
-From 295de378bd54c93b167db6a477d1e10dd85e9577 Mon Sep 17 00:00:00 2001
+From 8e94870c730751be96c5c461768fe081afb057d0 Mon Sep 17 00:00:00 2001
 From: Derek Watson <derekw1996@gmail.com>
 Date: Tue, 25 Oct 2022 23:50:15 -0400
 Subject: [PATCH] input: misc: add TWL6030 support to twl_pwrbutton
@@ -89,7 +89,7 @@ index 5614c5003828..4ff9d93b874a 100644
  		.name	= "twl_pwrbutton",
  		.of_match_table = of_match_ptr(twl_pwrbutton_dt_match_table),
 diff --git a/include/linux/mfd/twl.h b/include/linux/mfd/twl.h
-index 8871cc5188a0..108138c99e1a 100644
+index eaa233038254..b6141c693e47 100644
 --- a/include/linux/mfd/twl.h
 +++ b/include/linux/mfd/twl.h
 @@ -113,6 +113,7 @@ enum twl6030_module_ids {

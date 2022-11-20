@@ -1,4 +1,4 @@
-From b748e5c0e319a30e641cb2ffe6d028c2cb804cf5 Mon Sep 17 00:00:00 2001
+From 5d46c1220d8284106fdd2f5722a275a9a79f4355 Mon Sep 17 00:00:00 2001
 From: Mithil Bavishi <bavishimithil@gmail.com>
 Date: Sat, 20 Aug 2022 12:46:55 +0530
 Subject: [PATCH] dt-bindings: power: reset: Add bindings for twl6030-power

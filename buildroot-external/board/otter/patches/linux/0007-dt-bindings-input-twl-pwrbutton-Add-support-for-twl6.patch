@@ -1,4 +1,4 @@
-From 809d227d66e87c502baf61eadf9bde6b37a4d3d0 Mon Sep 17 00:00:00 2001
+From 0c3f92536e6266594adf3be9dce308ad784b7f5c Mon Sep 17 00:00:00 2001
 From: Mithil Bavishi <bavishimithil@gmail.com>
 Date: Sat, 20 Aug 2022 12:46:54 +0530
 Subject: [PATCH] dt-bindings: input: twl-pwrbutton: Add support for

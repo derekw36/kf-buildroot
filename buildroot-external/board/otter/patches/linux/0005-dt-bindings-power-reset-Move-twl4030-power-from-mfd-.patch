@@ -1,4 +1,4 @@
-From 79db08f7cbf3d2c222e32eab40663869d25cf795 Mon Sep 17 00:00:00 2001
+From c19a5e525e6aed5509a596183f59b026a3c78742 Mon Sep 17 00:00:00 2001
 From: Mithil Bavishi <bavishimithil@gmail.com>
 Date: Sat, 20 Aug 2022 12:46:52 +0530
 Subject: [PATCH] dt-bindings: power: reset: Move twl4030-power from mfd to

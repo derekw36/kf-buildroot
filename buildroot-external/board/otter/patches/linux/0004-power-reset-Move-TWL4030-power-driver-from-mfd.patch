@@ -1,4 +1,4 @@
-From 97e51d5d52db2eefe4cef3c630af67797056fe9f Mon Sep 17 00:00:00 2001
+From 09c1800642ee021b3be3d85224837e8eafb301cf Mon Sep 17 00:00:00 2001
 From: Mithil Bavishi <bavishimithil@gmail.com>
 Date: Sat, 20 Aug 2022 12:46:51 +0530
 Subject: [PATCH] power: reset: Move TWL4030 power driver from mfd
@@ -18,10 +18,10 @@ Acked-by: Lee Jones <lee@kernel.org>
  rename drivers/{mfd => power/reset}/twl4030-power.c (100%)
 
 diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 3fb480818599..3d0073f6ce82 100644
+index abb58ab1a1a4..6a409bb2a36a 100644
 --- a/drivers/mfd/Kconfig
 +++ b/drivers/mfd/Kconfig
-@@ -1641,19 +1641,6 @@ config TWL4030_CORE
+@@ -1643,19 +1643,6 @@ config TWL4030_CORE
  	  high speed USB OTG transceiver, an audio codec (on most
  	  versions) and many other features.
  
@@ -42,7 +42,7 @@ index 3fb480818599..3d0073f6ce82 100644
  	bool "TI TWL4030 Audio"
  	depends on TWL4030_CORE
 diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 0b1b629aef3e..c0afb31bd81c 100644
+index 858cacf659d6..bd7bf95e652f 100644
 --- a/drivers/mfd/Makefile
 +++ b/drivers/mfd/Makefile
 @@ -108,7 +108,6 @@ obj-$(CONFIG_MFD_TPS65912_SPI)  += tps65912-spi.o
@@ -54,12 +54,12 @@ index 0b1b629aef3e..c0afb31bd81c 100644
  obj-$(CONFIG_TWL6040_CORE)	+= twl6040.o
  
 diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 4b563db3ab3e..751a14325f8e 100644
+index a8c46ba5878f..141579751702 100644
 --- a/drivers/power/reset/Kconfig
 +++ b/drivers/power/reset/Kconfig
-@@ -297,4 +297,17 @@ config NVMEM_REBOOT_MODE
- 	  then the bootloader can read it and take different
- 	  action according to the mode.
+@@ -303,4 +303,17 @@ config POWER_MLXBF
+ 	help
+ 	  This driver supports reset or low power mode handling for Mellanox BlueField.
  
 +config TWL4030_POWER
 +        bool "TI TWL4030 power resources"
@@ -76,13 +76,13 @@ index 4b563db3ab3e..751a14325f8e 100644
 +
  endif
 diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index f606a2f60539..22b3be7344a1 100644
+index 0a39424fc558..e9db25b09fc1 100644
 --- a/drivers/power/reset/Makefile
 +++ b/drivers/power/reset/Makefile
-@@ -35,3 +35,4 @@ obj-$(CONFIG_REBOOT_MODE) += reboot-mode.o
- obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
+@@ -36,3 +36,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
  obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
  obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
+ obj-$(CONFIG_POWER_MLXBF) += pwr-mlxbf.o
 +obj-$(CONFIG_TWL4030_POWER) += twl4030-power.o
 diff --git a/drivers/mfd/twl4030-power.c b/drivers/power/reset/twl4030-power.c
 similarity index 100%

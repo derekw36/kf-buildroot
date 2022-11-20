@@ -1,4 +1,4 @@
-From 1fd423a7a8a338ff0f0617e3f6760bb95749c435 Mon Sep 17 00:00:00 2001
+From 995d7cef52071322e120bf09240e866d708f92ed Mon Sep 17 00:00:00 2001
 From: Michael John Sakellaropoulos <mjsakellaropoulos@gmail.com>
 Date: Thu, 6 May 2021 16:07:20 -0700
 Subject: [PATCH] Input: ili210x - Fix ili210x touchdata coordinates endianness
@@ -20,7 +20,7 @@ Fixes: e3559442afd2a ("ili210x - rework the touchscreen sample processing")
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/input/touchscreen/ili210x.c b/drivers/input/touchscreen/ili210x.c
-index 2bd407d86bae..09c8fd5ce54f 100644
+index e9bd36adbe47..9f5f8479b366 100644
 --- a/drivers/input/touchscreen/ili210x.c
 +++ b/drivers/input/touchscreen/ili210x.c
 @@ -112,8 +112,8 @@ static bool ili210x_touchdata_to_coords(const u8 *touchdata,

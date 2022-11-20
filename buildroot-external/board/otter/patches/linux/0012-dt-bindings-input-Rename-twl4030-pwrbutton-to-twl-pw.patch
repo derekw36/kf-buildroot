@@ -1,4 +1,4 @@
-From 691bf8ac349edab31344e207a7486a384dfff49a Mon Sep 17 00:00:00 2001
+From 21f009170527497a1c18af36267579ceff11b3e1 Mon Sep 17 00:00:00 2001
 From: Mithil Bavishi <bavishimithil@gmail.com>
 Date: Sat, 20 Aug 2022 12:46:59 +0530
 Subject: [PATCH] dt-bindings: input: Rename twl4030-pwrbutton to twl-pwrbutton

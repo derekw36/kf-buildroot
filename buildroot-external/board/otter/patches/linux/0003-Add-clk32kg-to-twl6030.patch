@@ -1,4 +1,4 @@
-From 0816513b728abf6e4b0668c0976ec99d4967fe75 Mon Sep 17 00:00:00 2001
+From affa3bc447f9f2a2be6a029cca88fd4e76ac5187 Mon Sep 17 00:00:00 2001
 From: Hansem Ro <hansemro@outlook.com>
 Date: Wed, 12 May 2021 18:26:38 -0700
 Subject: [PATCH] Add clk32kg to twl6030
