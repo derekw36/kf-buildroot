@@ -1,4 +1,4 @@
-From affa3bc447f9f2a2be6a029cca88fd4e76ac5187 Mon Sep 17 00:00:00 2001
+From 493a1f7d080b48d6d1eab3d0f947c5306293a05d Mon Sep 17 00:00:00 2001
 From: Hansem Ro <hansemro@outlook.com>
 Date: Wed, 12 May 2021 18:26:38 -0700
 Subject: [PATCH] Add clk32kg to twl6030
@@ -29,10 +29,10 @@ index 9d588cfaa5cb..4eee3133ce4e 100644
  		compatible = "ti,twl6030-gpadc";
  		interrupts = <3>;
 diff --git a/drivers/regulator/twl6030-regulator.c b/drivers/regulator/twl6030-regulator.c
-index 430265c404d6..8ee55a0e3d2f 100644
+index f3856750944f..106efd747392 100644
 --- a/drivers/regulator/twl6030-regulator.c
 +++ b/drivers/regulator/twl6030-regulator.c
-@@ -299,6 +299,13 @@ static const struct regulator_ops twl6030fixed_ops = {
+@@ -306,6 +306,13 @@ static const struct regulator_ops twl6030fixed_ops = {
  	.get_status	= twl6030reg_get_status,
  };
  
@@ -46,7 +46,7 @@ index 430265c404d6..8ee55a0e3d2f 100644
  /*
   * SMPS status and control
   */
-@@ -572,6 +579,19 @@ static const struct twlreg_info TWLSMPS_INFO_##label = { \
+@@ -581,6 +588,19 @@ static const struct twlreg_info TWLSMPS_INFO_##label = { \
  		}, \
  	}
  
@@ -66,7 +66,7 @@ index 430265c404d6..8ee55a0e3d2f 100644
  /* VUSBCP is managed *only* by the USB subchip */
  /* 6030 REG with base as PMC Slave Misc : 0x0030 */
  /* Turnon-delay and remap configuration values for 6030 are not
-@@ -601,6 +621,7 @@ TWL6030_FIXED_LDO(VDAC, 0x64, 1800, 0);
+@@ -610,6 +630,7 @@ TWL6030_FIXED_LDO(VDAC, 0x64, 1800, 0);
  TWL6030_FIXED_LDO(VUSB, 0x70, 3300, 0);
  TWL6030_FIXED_LDO(V1V8, 0x16, 1800, 0);
  TWL6030_FIXED_LDO(V2V1, 0x1c, 2100, 0);
@@ -74,7 +74,7 @@ index 430265c404d6..8ee55a0e3d2f 100644
  TWL6032_ADJUSTABLE_SMPS(SMPS3, 0x34);
  TWL6032_ADJUSTABLE_SMPS(SMPS4, 0x10);
  TWL6032_ADJUSTABLE_SMPS(VIO, 0x16);
-@@ -632,6 +653,7 @@ static u8 twl_get_smps_mult(void)
+@@ -641,6 +662,7 @@ static u8 twl_get_smps_mult(void)
  #define TWL6030_OF_MATCH(comp, label) TWL_OF_MATCH(comp, TWL6030, label)
  #define TWL6032_OF_MATCH(comp, label) TWL_OF_MATCH(comp, TWL6032, label)
  #define TWLFIXED_OF_MATCH(comp, label) TWL_OF_MATCH(comp, TWLFIXED, label)
@@ -82,7 +82,7 @@ index 430265c404d6..8ee55a0e3d2f 100644
  #define TWLSMPS_OF_MATCH(comp, label) TWL_OF_MATCH(comp, TWLSMPS, label)
  
  static const struct of_device_id twl_of_match[] = {
-@@ -659,6 +681,7 @@ static const struct of_device_id twl_of_match[] = {
+@@ -668,6 +690,7 @@ static const struct of_device_id twl_of_match[] = {
  	TWLFIXED_OF_MATCH("ti,twl6030-vusb", VUSB),
  	TWLFIXED_OF_MATCH("ti,twl6030-v1v8", V1V8),
  	TWLFIXED_OF_MATCH("ti,twl6030-v2v1", V2V1),

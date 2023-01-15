@@ -1,4 +1,4 @@
-From dd20e287d0c35533c6ba0de14f5d9492cd92e95d Mon Sep 17 00:00:00 2001
+From a006b2b41f1bed6b894f2628a557a13e6b210886 Mon Sep 17 00:00:00 2001
 From: Paul Kocialkowski <contact@paulk.fr>
 Date: Sat, 20 Aug 2022 12:46:53 +0530
 Subject: [PATCH] power: reset: Add TWL6030 power driver, with minimal support
@@ -20,12 +20,12 @@ Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
  create mode 100644 drivers/power/reset/twl6030-power.c
 
 diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 141579751702..52d27149469c 100644
+index 7266b4a7c321..0f53d72af232 100644
 --- a/drivers/power/reset/Kconfig
 +++ b/drivers/power/reset/Kconfig
-@@ -316,4 +316,14 @@ config TWL4030_POWER
-           and load scripts controlling which resources are switched off/on
-           or reset when a sleep, wakeup or warm reset event occurs.
+@@ -310,4 +310,14 @@ config TWL4030_POWER
+ 	  and load scripts controlling which resources are switched off/on
+ 	  or reset when a sleep, wakeup or warm reset event occurs.
  
 +config TWL6030_POWER
 +	bool "TI TWL6030 power resources"
@@ -39,12 +39,12 @@ index 141579751702..52d27149469c 100644
 +
  endif
 diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index e9db25b09fc1..692d51cefa05 100644
+index 22b3be7344a1..3034e818cd01 100644
 --- a/drivers/power/reset/Makefile
 +++ b/drivers/power/reset/Makefile
-@@ -37,3 +37,4 @@ obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
+@@ -36,3 +36,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
+ obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
  obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
- obj-$(CONFIG_POWER_MLXBF) += pwr-mlxbf.o
  obj-$(CONFIG_TWL4030_POWER) += twl4030-power.o
 +obj-$(CONFIG_TWL6030_POWER) += twl6030-power.o
 diff --git a/drivers/power/reset/twl6030-power.c b/drivers/power/reset/twl6030-power.c
