@@ -1,0 +1,14 @@
+[Match]
+Name=wlan0
+
+[Network]
+DHCP=yes
+IgnoreCarrierLoss=3s
+
+# Set route metrics one higher than usb0, so usb0 is preferred
+# if both are connected.
+[DHCPv4]
+RouteMetric=1025
+
+[IPv6AcceptRA]
+RouteMetric=1025
