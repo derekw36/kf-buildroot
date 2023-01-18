@@ -1,4 +1,4 @@
-From 6b35c6eb93cb82e4ca7e5c47030393c0ff14a85c Mon Sep 17 00:00:00 2001
+From 2fcdc6f9c53bce6724b8a51f33a2edce2d9f903a Mon Sep 17 00:00:00 2001
 From: Derek Watson <derekw1996@gmail.com>
 Date: Tue, 25 Oct 2022 23:54:28 -0400
 Subject: [PATCH] ARM: dts: twl6030: add power button node

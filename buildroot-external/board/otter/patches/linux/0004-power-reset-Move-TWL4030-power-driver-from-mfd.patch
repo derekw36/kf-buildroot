@@ -1,4 +1,4 @@
-From c97c91f0b211eedeacd88a5857e508c50fb3df61 Mon Sep 17 00:00:00 2001
+From 7b410bf49c7f6d5e463338501310afc6ede6b20a Mon Sep 17 00:00:00 2001
 From: Mithil Bavishi <bavishimithil@gmail.com>
 Date: Sat, 20 Aug 2022 12:46:51 +0530
 Subject: [PATCH] power: reset: Move TWL4030 power driver from mfd
@@ -18,10 +18,10 @@ Acked-by: Lee Jones <lee@kernel.org>
  rename drivers/{mfd => power/reset}/twl4030-power.c (100%)
 
 diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-index 5dd7ea0ebd46..b4dd802bc915 100644
+index a8dc68e87c0a..2c5036a64e63 100644
 --- a/drivers/mfd/Kconfig
 +++ b/drivers/mfd/Kconfig
-@@ -1653,19 +1653,6 @@ config TWL4030_CORE
+@@ -1691,19 +1691,6 @@ config TWL4030_CORE
  	  high speed USB OTG transceiver, an audio codec (on most
  	  versions) and many other features.
  
@@ -42,10 +42,10 @@ index 5dd7ea0ebd46..b4dd802bc915 100644
  	bool "TI TWL4030 Audio"
  	depends on TWL4030_CORE
 diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-index 2ba6646e874c..88f23d90fe4d 100644
+index 07ed2827c4f2..59fadb3df861 100644
 --- a/drivers/mfd/Makefile
 +++ b/drivers/mfd/Makefile
-@@ -109,7 +109,6 @@ obj-$(CONFIG_MFD_TPS80031)	+= tps80031.o
+@@ -111,7 +111,6 @@ obj-$(CONFIG_MFD_TPS80031)	+= tps80031.o
  obj-$(CONFIG_MENELAUS)		+= menelaus.o
  
  obj-$(CONFIG_TWL4030_CORE)	+= twl-core.o twl4030-irq.o twl6030-irq.o
@@ -54,10 +54,10 @@ index 2ba6646e874c..88f23d90fe4d 100644
  obj-$(CONFIG_TWL6040_CORE)	+= twl6040.o
  
 diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 4b563db3ab3e..7266b4a7c321 100644
+index d55b3727e00e..d795841f142c 100644
 --- a/drivers/power/reset/Kconfig
 +++ b/drivers/power/reset/Kconfig
-@@ -297,4 +297,17 @@ config NVMEM_REBOOT_MODE
+@@ -284,5 +284,18 @@ config NVMEM_REBOOT_MODE
  	  then the bootloader can read it and take different
  	  action according to the mode.
  
@@ -75,11 +75,12 @@ index 4b563db3ab3e..7266b4a7c321 100644
 +	  or reset when a sleep, wakeup or warm reset event occurs.
 +
  endif
+ 
 diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index f606a2f60539..22b3be7344a1 100644
+index c51eceba9ea3..a6b8375f07d3 100644
 --- a/drivers/power/reset/Makefile
 +++ b/drivers/power/reset/Makefile
-@@ -35,3 +35,4 @@ obj-$(CONFIG_REBOOT_MODE) += reboot-mode.o
+@@ -33,3 +33,4 @@ obj-$(CONFIG_REBOOT_MODE) += reboot-mode.o
  obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
  obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
  obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o

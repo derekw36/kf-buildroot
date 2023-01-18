@@ -1,4 +1,4 @@
-From a006b2b41f1bed6b894f2628a557a13e6b210886 Mon Sep 17 00:00:00 2001
+From 00d31ad6fb451166eac737a9fa3d637801d111a2 Mon Sep 17 00:00:00 2001
 From: Paul Kocialkowski <contact@paulk.fr>
 Date: Sat, 20 Aug 2022 12:46:53 +0530
 Subject: [PATCH] power: reset: Add TWL6030 power driver, with minimal support
@@ -20,10 +20,10 @@ Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
  create mode 100644 drivers/power/reset/twl6030-power.c
 
 diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-index 7266b4a7c321..0f53d72af232 100644
+index d795841f142c..fc0b2a6047da 100644
 --- a/drivers/power/reset/Kconfig
 +++ b/drivers/power/reset/Kconfig
-@@ -310,4 +310,14 @@ config TWL4030_POWER
+@@ -297,5 +297,15 @@ config TWL4030_POWER
  	  and load scripts controlling which resources are switched off/on
  	  or reset when a sleep, wakeup or warm reset event occurs.
  
@@ -38,11 +38,12 @@ index 7266b4a7c321..0f53d72af232 100644
 +	  the main power supply.
 +
  endif
+ 
 diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-index 22b3be7344a1..3034e818cd01 100644
+index a6b8375f07d3..06168afcd988 100644
 --- a/drivers/power/reset/Makefile
 +++ b/drivers/power/reset/Makefile
-@@ -36,3 +36,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
+@@ -34,3 +34,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
  obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
  obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
  obj-$(CONFIG_TWL4030_POWER) += twl4030-power.o

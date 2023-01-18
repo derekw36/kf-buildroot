@@ -1,4 +1,4 @@
-From 6be4b4e0dd64bc3850ffb331cfaec0ba033a3710 Mon Sep 17 00:00:00 2001
+From e3834a2800d89471a4ddc2a5b0c822c9b2a2c562 Mon Sep 17 00:00:00 2001
 From: Paul Kocialkowski <contact@paulk.fr>
 Date: Sat, 20 Aug 2022 12:46:57 +0530
 Subject: [PATCH] ARM: OMAP2+: Select TWL6030_POWER for OMAP4
@@ -11,10 +11,10 @@ Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
-index 89a23b5843c0..b27ae703fd6b 100644
+index 1a2b61245162..f7f6f18398c2 100644
 --- a/arch/arm/mach-omap2/Kconfig
 +++ b/arch/arm/mach-omap2/Kconfig
-@@ -141,6 +141,7 @@ config ARCH_OMAP2PLUS_TYPICAL
+@@ -137,6 +137,7 @@ config ARCH_OMAP2PLUS_TYPICAL
  	select REGULATOR_FIXED_VOLTAGE
  	select TWL4030_CORE if ARCH_OMAP3 || ARCH_OMAP4
  	select TWL4030_POWER if ARCH_OMAP3
