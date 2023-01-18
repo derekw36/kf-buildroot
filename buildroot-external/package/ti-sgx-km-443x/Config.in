@@ -1,0 +1,15 @@
+comment "ti-sgx-km-443x needs a Linux kernel to be built"
+	depends on BR2_arm
+	depends on !BR2_LINUX_KERNEL
+
+config BR2_PACKAGE_TI_SGX_KM_443X
+	bool "ti-sgx-km-443x"
+	depends on BR2_LINUX_KERNEL && BR2_arm
+	select BR2_LINUX_NEEDS_MODULES
+	help
+	  Kernel modules for TI CPUs with SGX GPU.
+	  This package supports OMAP 443X only.
+
+	  Note: it needs a TI specific kernel to build properly.
+
+	  https://git.ti.com/cgit/graphics/omap5-sgx-ddk-linux

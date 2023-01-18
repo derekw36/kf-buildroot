@@ -1,1 +1,3 @@
 source "$BR2_EXTERNAL_OTTER_PATH/package/mkbootimg/Config.in.host"
+source "$BR2_EXTERNAL_OTTER_PATH/package/ti-sgx-km-443x/Config.in"
+source "$BR2_EXTERNAL_OTTER_PATH/package/ti-sgx-um-443x/Config.in"

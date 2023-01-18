@@ -1,0 +1,34 @@
+From 93b6735db10f4516f517a58623d2547d0adc5736 Mon Sep 17 00:00:00 2001
+From: Derek Watson <derekw1996@gmail.com>
+Date: Tue, 17 Jan 2023 21:33:10 -0500
+Subject: [PATCH] ARM: dts: omap4: add gpu node
+
+Add GPU node to the omap4 common device tree, to be used with TI's out-of-tree
+module at https://git.ti.com/cgit/graphics/omap5-sgx-ddk-um-linux
+---
+ arch/arm/boot/dts/omap4.dtsi | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/omap4.dtsi b/arch/arm/boot/dts/omap4.dtsi
+index 049174086756..9a33aaf3273d 100644
+--- a/arch/arm/boot/dts/omap4.dtsi
++++ b/arch/arm/boot/dts/omap4.dtsi
+@@ -434,10 +434,11 @@ sgx_module: target-module@56000000 {
+ 			#size-cells = <1>;
+ 			ranges = <0 0x56000000 0x2000000>;
+ 
+-			/*
+-			 * Closed source PowerVR driver, no child device
+-			 * binding or driver in mainline
+-			 */
++			gpu: gpu@0 {
++				compatible = "ti,omap4-sgx540-120";
++				reg = <0x0 0x2000000>;  /* 32MB */
++				interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
++			};
+ 		};
+ 
+ 		/*
+-- 
+2.30.2
+

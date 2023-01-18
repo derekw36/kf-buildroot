@@ -1,0 +1,10 @@
+# pvrsrvkm requires this userspace tool to start/stop the GPU.
+# Specify --no-module to leave out module load from hardcoded path, which
+# results in error. Anyway the module is already loaded and the device add
+# request was sent to udev.
+# Also specify "card*" to filter out the duplicate "renderD*" device.
+ACTION=="add", SUBSYSTEM=="drm", DRIVERS=="pvrsrvkm", KERNEL=="card*", RUN+="/usr/bin/pvrsrvctl --start --no-module"
+
+# Remove probably will never happen and probably won't even work after GPU has
+# already been removed, but it's here for completeness :)
+ACTION=="remove", SUBSYSTEM=="drm", DRIVERS=="pvrsrvkm", KERNEL=="card*", RUN+="/usr/bin/pvrsrvctl --stop --no-module"
