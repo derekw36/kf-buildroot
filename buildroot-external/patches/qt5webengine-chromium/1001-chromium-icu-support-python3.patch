@@ -1,0 +1,52 @@
+Index: qt5webengine-chromium-0ad2814370799a2161057d92231fe3ee00e2fe98/chromium/third_party/icu/scripts/make_data_assembly.py
+===================================================================
+--- qt5webengine-chromium-0ad2814370799a2161057d92231fe3ee00e2fe98.orig/chromium/third_party/icu/scripts/make_data_assembly.py
++++ qt5webengine-chromium-0ad2814370799a2161057d92231fe3ee00e2fe98/chromium/third_party/icu/scripts/make_data_assembly.py
+@@ -42,11 +42,11 @@ else:
+   step = -1
+ 
+ input_data = open(input_file, 'rb').read()
+-n = input_data.find("icudt")
++n = input_data.find(b"icudt")
+ if n == -1:
+   sys.exit("Cannot find a version number in %s." % input_file)
+ 
+-version_number = input_data[n + 5:n + 7]
++version_number = input_data[n + 5:n + 7].decode('ascii')
+ 
+ output = open(output_file, 'w')
+ 
+@@ -75,21 +75,21 @@ else:
+                "\t.type icudt%s_dat,%%object\n"
+                "icudt%s_dat:\n" % tuple([version_number] * 4))
+ 
+-split = [binascii.hexlify(input_data[i:i + 4][::step]).upper().lstrip('0')
++split = [binascii.hexlify(input_data[i:i + 4][::step]).upper().lstrip(b'0')
+         for i in range(0, len(input_data), 4)]
+ 
+ for i in range(len(split)):
+   if (len(split[i]) == 0):
+     value = '0'
+   elif (len(split[i]) == 1):
+-    if not any((c in '123456789') for c in split[i]):
+-      value = '0x0' + split[i]
++    if not any((c in b'123456789') for c in split[i]):
++      value = '0x0' + split[i].decode('ascii')
+     else:
+-      value = split[i]
++      value = split[i].decode('ascii')
+   elif (len(split[i]) % 2 == 1):
+-    value = '0x0' + split[i]
++    value = '0x0' + split[i].decode('ascii')
+   else:
+-    value = '0x' + split[i]
++    value = '0x' + split[i].decode('ascii')
+ 
+   if (i % 32 == 0):
+     output.write("\n.long ")
+@@ -99,4 +99,4 @@ for i in range(len(split)):
+ 
+ output.write("\n")
+ output.close()
+-print "Generated " + output_file
++print("Generated " + output_file)
