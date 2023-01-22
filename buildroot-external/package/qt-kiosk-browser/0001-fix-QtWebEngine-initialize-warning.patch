@@ -1,0 +1,36 @@
+From d324bb10333cbaa32540056f3c6165b5dd69b1df Mon Sep 17 00:00:00 2001
+From: Derek Watson <derekw1996@gmail.com>
+Date: Sat, 21 Jan 2023 20:05:35 -0500
+Subject: [PATCH] fix QtWebEngine::initialize() warning
+
+This warning appears on Qt 5.15.8:
+
+QtWebEngine::initialize() called with QCoreApplication object already created
+and should be call before. This is depreciated and may fail in the future.
+
+Fix it by doing what it says.
+---
+ main.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/main.cpp b/main.cpp
+index 50c96c1..5b7fb2e 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -16,11 +16,11 @@ int main(int argc, char *argv[])
+ {
+     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+ 
++    QtWebEngine::initialize();
++
+     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+     QGuiApplication app(argc, argv);
+ 
+-    QtWebEngine::initialize();
+-
+     qmlRegisterSingletonType<InputEventHandler>("Browser", 1, 0, "Browser", [](QQmlEngine *, QJSEngine *) -> QObject * {
+         return new Browser();
+     });
+-- 
+2.30.2
+

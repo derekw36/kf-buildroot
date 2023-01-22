@@ -1,0 +1,16 @@
+config BR2_PACKAGE_QT_KIOSK_BROWSER
+	bool "qt-kiosk-browser"
+	# TODO: find other depends
+	depends on BR2_PACKAGE_QT5
+	depends on !BR2_STATIC_LIBS
+	depends on BR2_HOST_GCC_AT_LEAST_4_9
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_4_9
+	select BR2_PACKAGE_LIBERATION
+	select BR2_PACKAGE_QT5DECLARATIVE
+	select BR2_PACKAGE_QT5QUICKCONTROLS2
+	select BR2_PACKAGE_QT5VIRTUALKEYBOARD
+	select BR2_PACKAGE_QT5WEBENGINE
+
+comment "qt-kiosk-browser needs a toolchain w/ dynamic library, gcc >= 4.9, host gcc >= 4.9"
+	depends on BR2_STATIC_LIBS || !BR2_TOOLCHAIN_GCC_AT_LEAST_4_9 || \
+		!BR2_HOST_GCC_AT_LEAST_4_9
