@@ -19,15 +19,16 @@ define QT_KIOSK_BROWSER_INSTALL_TARGET_CMDS
 		install_target
 endef
 
-# These are poor init defaults for buildroot
-#define QT_KIOSK_BROWSER_INSTALL_INIT_SYSV
-#	$(INSTALL) -m 755 -D $(BR2_EXTERNAL_OTTER_PATH)/package/qt-kiosk-browser/qt-kiosk-browser.initd \
-#		$(TARGET_DIR)/etc/init.d/S99qt-kiosk-browser
-#endef
+define QT_KIOSK_BROWSER_INSTALL_INIT_SYSTEMD
+	$(INSTALL) -D -m 644 $(BR2_EXTERNAL_OTTER_PATH)/package/qt-kiosk-browser/qt-kiosk-browser@.service \
+		$(TARGET_DIR)/usr/lib/systemd/system/qt-kiosk-browser@.service
+endef
 
-#define QT_KIOSK_BROWSER_INSTALL_INIT_SYSTEMD
-#	$(INSTALL) -D -m 644 $(BR2_EXTERNAL_OTTER_PATH)/package/qt-kiosk-browser/qt-kiosk-browser.service \
-#		$(TARGET_DIR)/usr/lib/systemd/system/qt-kiosk-browser.service
-#endef
+define QT_KIOSK_BROWSER_INSTALL_CONF_FILES
+	$(INSTALL) -D -m 0644 $(BR2_EXTERNAL_OTTER_PATH)/package/qt-kiosk-browser/example.json \
+		$(TARGET_DIR)/etc/qt-kiosk-browser/example.json
+endef
+
+QT_KIOSK_BROWSER_POST_INSTALL_TARGET_HOOKS += QT_KIOSK_BROWSER_INSTALL_CONF_FILES
 
 $(eval $(qmake-package))

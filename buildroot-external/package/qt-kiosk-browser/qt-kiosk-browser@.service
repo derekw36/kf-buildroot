@@ -1,0 +1,12 @@
+[Unit]
+Description=Qt Kiosk Browser service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/qt/env.conf
+ExecStart=/usr/bin/qt-kiosk-browser /etc/qt-kiosk-browser/%I.json --no-sandbox
+
+[Install]
+WantedBy=multi-user.target
