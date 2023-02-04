@@ -1,0 +1,5 @@
+config BR2_PACKAGE_OMAPCONF
+    bool "omapconf"
+    depends on BR2_arm
+    help
+      A Powerful Diagnostic Tool for Texas Instruments OMAP Processors
