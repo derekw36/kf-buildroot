@@ -1,0 +1,27 @@
+From 42b12783030cdb0c855d52c6852f586043228829 Mon Sep 17 00:00:00 2001
+From: Paul Kocialkowski <contact@paulk.fr>
+Date: Sat, 20 Aug 2022 12:46:57 +0530
+Subject: [PATCH] ARM: OMAP2+: Select TWL6030_POWER for OMAP4
+
+The TWL6030 is generally used with the OMAP4.
+
+Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+---
+ arch/arm/mach-omap2/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+index e4fea50c315a..9af3bd48878d 100644
+--- a/arch/arm/mach-omap2/Kconfig
++++ b/arch/arm/mach-omap2/Kconfig
+@@ -144,6 +144,7 @@ config ARCH_OMAP2PLUS_TYPICAL
+ 	select REGULATOR_FIXED_VOLTAGE
+ 	select TWL4030_CORE if ARCH_OMAP3 || ARCH_OMAP4
+ 	select TWL4030_POWER if ARCH_OMAP3
++	select TWL6030_POWER if ARCH_OMAP4
+ 	select VFP
+ 	help
+ 	  Compile a kernel suitable for booting most boards
+-- 
+2.30.2
+

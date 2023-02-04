@@ -1,0 +1,93 @@
+From 284fa619a4cb39137300594c95ed6d02a391e608 Mon Sep 17 00:00:00 2001
+From: Mithil Bavishi <bavishimithil@gmail.com>
+Date: Sat, 20 Aug 2022 12:46:51 +0530
+Subject: [PATCH] power: reset: Move TWL4030 power driver from mfd
+
+The power/reset folder seems like a more appropriate place for
+twl4030-power.c
+
+Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
+Acked-by: Lee Jones <lee@kernel.org>
+---
+ drivers/mfd/Kconfig                          | 13 -------------
+ drivers/mfd/Makefile                         |  1 -
+ drivers/power/reset/Kconfig                  | 13 +++++++++++++
+ drivers/power/reset/Makefile                 |  1 +
+ drivers/{mfd => power/reset}/twl4030-power.c |  0
+ 5 files changed, 14 insertions(+), 14 deletions(-)
+ rename drivers/{mfd => power/reset}/twl4030-power.c (100%)
+
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 9940e2724c05..2d1601e3fddd 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -1702,19 +1702,6 @@ config TWL4030_CORE
+ 	  high speed USB OTG transceiver, an audio codec (on most
+ 	  versions) and many other features.
+ 
+-config TWL4030_POWER
+-	bool "TI TWL4030 power resources"
+-	depends on TWL4030_CORE && ARM
+-	help
+-	  Say yes here if you want to use the power resources on the
+-	  TWL4030 family chips.  Most of these resources are regulators,
+-	  which have a separate driver; some are control signals, such
+-	  as clock request handshaking.
+-
+-	  This driver uses board-specific data to initialize the resources
+-	  and load scripts controlling which resources are switched off/on
+-	  or reset when a sleep, wakeup or warm reset event occurs.
+-
+ config MFD_TWL4030_AUDIO
+ 	bool "TI TWL4030 Audio"
+ 	depends on TWL4030_CORE
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index 7ed3ef4a698c..0fc9d29f5e80 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -108,7 +108,6 @@ obj-$(CONFIG_MFD_TPS65912_SPI)  += tps65912-spi.o
+ obj-$(CONFIG_MENELAUS)		+= menelaus.o
+ 
+ obj-$(CONFIG_TWL4030_CORE)	+= twl-core.o twl4030-irq.o twl6030-irq.o
+-obj-$(CONFIG_TWL4030_POWER)    += twl4030-power.o
+ obj-$(CONFIG_MFD_TWL4030_AUDIO)	+= twl4030-audio.o
+ obj-$(CONFIG_TWL6040_CORE)	+= twl6040.o
+ 
+diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
+index a8c46ba5878f..bf916be7405c 100644
+--- a/drivers/power/reset/Kconfig
++++ b/drivers/power/reset/Kconfig
+@@ -303,4 +303,17 @@ config POWER_MLXBF
+ 	help
+ 	  This driver supports reset or low power mode handling for Mellanox BlueField.
+ 
++config TWL4030_POWER
++	bool "TI TWL4030 power resources"
++	depends on TWL4030_CORE && ARM
++	help
++	  Say yes here if you want to use the power resources on the
++	  TWL4030 family chips.  Most of these resources are regulators,
++	  which have a separate driver; some are control signals, such
++	  as clock request handshaking.
++
++	  This driver uses board-specific data to initialize the resources
++	  and load scripts controlling which resources are switched off/on
++	  or reset when a sleep, wakeup or warm reset event occurs.
++
+ endif
+diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
+index 0a39424fc558..e9db25b09fc1 100644
+--- a/drivers/power/reset/Makefile
++++ b/drivers/power/reset/Makefile
+@@ -36,3 +36,4 @@ obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
+ obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
+ obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
+ obj-$(CONFIG_POWER_MLXBF) += pwr-mlxbf.o
++obj-$(CONFIG_TWL4030_POWER) += twl4030-power.o
+diff --git a/drivers/mfd/twl4030-power.c b/drivers/power/reset/twl4030-power.c
+similarity index 100%
+rename from drivers/mfd/twl4030-power.c
+rename to drivers/power/reset/twl4030-power.c
+-- 
+2.30.2
+
