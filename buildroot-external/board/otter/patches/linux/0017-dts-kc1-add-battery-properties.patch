@@ -1,0 +1,26 @@
+From ff775a12ec8f3c07e1d831e8f67958397606924e Mon Sep 17 00:00:00 2001
+From: Derek Watson <derekw1996@gmail.com>
+Date: Sat, 10 Jun 2023 19:55:06 -0400
+Subject: [PATCH] dts: kc1: add battery properties
+
+kc1 has a 4400mAh/16.28Wh battery.
+---
+ arch/arm/boot/dts/omap4-kc1.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm/boot/dts/omap4-kc1.dts b/arch/arm/boot/dts/omap4-kc1.dts
+index 74249ccc54dc..266f70a4291a 100644
+--- a/arch/arm/boot/dts/omap4-kc1.dts
++++ b/arch/arm/boot/dts/omap4-kc1.dts
+@@ -45,6 +45,8 @@ led-2 {
+ 
+ 	bat: battery {
+ 		compatible = "simple-battery";
++		energy-full-design-microwatt-hours = <16280000>;
++		charge-full-design-microamp-hours = <4400000>;
+ 		/* Documentation/devicetree/bindings/power/supply/battery.yaml */
+ 	};
+ };
+-- 
+2.30.2
+
